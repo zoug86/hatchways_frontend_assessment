@@ -1,0 +1,12 @@
+.grades{
+    display: flex;
+    flex-direction: column;
+    line-height: 1px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+.grades > pre{
+    margin-bottom: 2px;
+    font-family: inherit;
+    font-size: 13px;
+}
