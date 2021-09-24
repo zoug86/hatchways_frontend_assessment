@@ -6,7 +6,7 @@ const Grades = ({ grades }) => {
     return (
         <div className='grades'>
             {grades.map((grade, i) => (
-                <pre>Test {i + 1}:       {grade}%</pre>
+                <pre key={i}>Test {i + 1}:       {grade}%</pre>
             ))}
         </div>
     )

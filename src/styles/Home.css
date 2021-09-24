@@ -1,15 +1,23 @@
 .home{
     height: 80vh;
-    width: 45vw;
+    width: 55vw;
     display: flex;
     flex-direction: column;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.12), 0 1px 4px rgba(0, 0, 0, 0.24);
     border-radius: 10px;
     background-color: #fff;
+    position: relative;
 }
 
 .students_list{
+  position: absolute;
+  top: 150px;
+  left: 5px;
+  bottom: 0;
+  right: 2px;
+  padding: 0; 
   overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .students_list::-webkit-scrollbar{
@@ -42,8 +50,9 @@
   }
 
   .text_input > input::placeholder{
-      font-size: 20px;
-      color: rgb(228, 220, 220);
+      font-size: 27px;
+      color: rgb(126, 124, 124);
+      font-weight: 500;
   }
 
   .text_input > input:focus {

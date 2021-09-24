@@ -1,10 +1,14 @@
 import Home from './pages/Home';
+import { TagProvider } from './context/TagContext';
+
 import './App.css';
 
 function App() {
   return (
     <div className="App">
-      <Home />
+      <TagProvider>
+        <Home />
+      </TagProvider>
     </div>
   );
 }

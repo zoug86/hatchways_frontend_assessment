@@ -17,7 +17,7 @@
 .student_img{
     display: flex;
     align-items: center;
-    width: 100px;
+    width: 150px;
     height: 100%;
     padding: 0;
     margin: 0 30px 0 20px;
@@ -37,9 +37,9 @@
     flex-direction: column;
 }
 .student_name{
-    font-size: 30px;
+    font-size: 50px;
     text-transform: uppercase;
-    font-weight: 900;
+    font-weight: bolder;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -47,15 +47,15 @@
 .student_sub_info{
     display: flex;
     flex-direction: column;
-    margin-left: 15px;
+    margin-left: 25px;
     margin-bottom: 15px;
-    color:rgb(165, 153, 153);
+    color:rgb(29, 28, 28);
     font-weight: 500;
 }
 
 .student_sub_info > span{
-    font-size: 15px;
-    line-height: 25px;;
+    font-size: 20px;
+    line-height: 30px;;
 }
 
 .btn_div{
@@ -65,8 +65,8 @@
 
 .btn{
     position:absolute;
-    top: -10px;
-    right: 20px;
+    top: 0;
+    right: 5px;
     border: none;
     background: none;
     cursor: pointer;
@@ -80,3 +80,23 @@
 .plus_sign{
     font-size: 50px;
 }
+
+input{
+    border: none;
+    margin: 10px 0 10px 0;
+    border-bottom: 1px solid rgb(228, 220, 220);
+    width: 45%;
+    height: 40px;
+    font-size: 20px;
+    font-weight: 300;
+  }
+
+  input::placeholder{
+      font-size: 18px;
+      color: rgb(165, 153, 153);
+  }
+
+  input:focus {
+    outline: none;
+    border-bottom: 1px solid rgb(41, 39, 39);
+  }

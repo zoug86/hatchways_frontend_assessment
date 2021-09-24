@@ -1,59 +1,65 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
 import Student from '../components/Student';
-// import Loader from '../components/Loader';
-import axios from 'axios';
-import { STUDENT_URL } from '../api';
+import { TagContext } from '../context/TagContext';
+import Tag from '../components/Tag';
 
 // import css file
 import '../styles/Home.css';
 
 const Home = () => {
-    const [students, setStudents] = useState([]);
-    const [isLoading, setIsLoading] = useState(true);
+
+    const { students, isLoading, loading, setLoading, tagValues } = useContext(TagContext);
     const [searchTerm, setSearchTerm] = useState('');
+    const [tagTerm, setTagTerm] = useState('');
 
-    // Load the data from the api when isloading changes
     useEffect(() => {
-        if (isLoading) {
-            const getStudents = async () => {
-                const { data } = await axios.get(`${STUDENT_URL}`);
-                setStudents(data.students);
-                setIsLoading(false);
-            }
-            getStudents();
+        if (loading) {
+
+            students.map((student, i) => {
+                if (Object.keys(tagValues).includes(student.email)) {
+                    student.allTags = tagValues[student.email];
+                    console.log(student)
+                }
+            })
         }
+        setLoading(true);
+    })
 
-    }, [isLoading]);
-
-    // Load the data from the api when searchTerm changes
-    useEffect(() => {
-        const searchStudent = async () => {
-            const { data } = await axios.get(`${STUDENT_URL}`);
-            const newStudents = data.students.filter(({ firstName, lastName }) =>
-                firstName.toLowerCase().indexOf(searchTerm) !== -1 ||
-                lastName.toLowerCase().indexOf(searchTerm) !== -1
-            );
-            setStudents(newStudents);
-        }
-        searchStudent();
-    }, [searchTerm]);
-
-    console.log(students)
+    //console.log(students)
     return (
         isLoading ? <h1>Loading...</h1> : (
             <div className='home'>
                 <div className='text_input'>
                     <input
-                        type='search'
+                        type='text'
                         name='search'
-                        id='search'
                         value={searchTerm}
                         placeholder='Search by name'
                         onChange={(e) => setSearchTerm(e.target.value)} />
                 </div>
+                <div className='text_input'>
+                    <input
+                        type='text'
+                        name='tag'
+                        value={tagTerm}
+                        placeholder='Search by tag'
+                        onChange={(e) => setTagTerm(e.target.value)} />
+                </div>
                 <div className='students_list'>
-                    {students?.map((student, i) => (
-                        <Student key={i} student={student} />
+                    {students.filter(student => {
+                        let newStudent;
+                        if ((student.firstName + ' ' + student.lastName).toLowerCase().includes(searchTerm.toLocaleLowerCase())) {
+                            newStudent = student;
+                        }
+                        return newStudent
+                    }).filter(student => {
+                        let newStudent;
+                        if ((student.allTags.join()).toLowerCase().includes(tagTerm.toLocaleLowerCase())) {
+                            newStudent = student;
+                        }
+                        return newStudent
+                    }).map((newStudent, i) => (
+                        <Student key={i} student={newStudent} />
                     ))}
                 </div>
             </div>
