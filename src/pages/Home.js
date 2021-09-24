@@ -7,24 +7,27 @@ import '../styles/Home.css';
 
 const Home = () => {
 
+    // importing state from context hook
     const { students, isLoading, loading, setLoading, tagValues } = useContext(TagContext);
+
+    // input field state
     const [searchTerm, setSearchTerm] = useState('');
     const [tagTerm, setTagTerm] = useState('');
 
+    // a life cycle hook that will get called at every render(code indeside will be executed if loading is true)
+    // the goal behind useEffect here is to update the list of students with the user input tags
     useEffect(() => {
         if (loading) {
-
-            students.map((student, i) => {
+            students.map((student) => {
                 if (Object.keys(tagValues).includes(student.email)) {
                     student.allTags = tagValues[student.email];
-                    console.log(student)
                 }
             })
         }
         setLoading(true);
     })
 
-    //console.log(students)
+    // Please note that filtering is rendered below using mainly Array.filter() and Array.includes() methods
     return (
         isLoading ? <h1>Loading...</h1> : (
             <div className='home'>
@@ -62,10 +65,8 @@ const Home = () => {
                     ))}
                 </div>
             </div>
-
         )
     )
-
 }
 
 export default Home;

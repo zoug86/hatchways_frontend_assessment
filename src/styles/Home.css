@@ -9,6 +9,14 @@
     position: relative;
 }
 
+@media  screen and (max-width: 1600px){
+  .home{
+    
+    width: 70vw;
+   
+  }
+}
+
 .students_list{
   position: absolute;
   top: 150px;

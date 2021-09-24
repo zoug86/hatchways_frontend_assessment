@@ -7,15 +7,20 @@ import { TagContext } from '../context/TagContext';
 import '../styles/Student.css';
 
 const Student = ({ student }) => {
-    const { loading, setLoading, tagValues, setTagValues } = useContext(TagContext);
 
-    const [toggle, setToggle] = useState('false');
-    const [tag, setTag] = useState('');
-    const [allTags, setAllTags] = useState([]);
+    // load global state from the Context hook
+    const { students, loading, setLoading, tagValues, setTagValues } = useContext(TagContext);
 
+    // Component specific states
+    const [toggle, setToggle] = useState('false');// needed to trigger the Grades component
+    const [tag, setTag] = useState(''); // this is the tag input field state
+    const [allTags, setAllTags] = useState([]); // we need this to get all the input tags
+
+    //Calcalute the student grades avergae
     const sum = student.grades.reduce((a, b) => parseInt(a, 10) + parseInt(b, 10), 0);
     const average = (sum / student.grades.length) || 0;
 
+    // handle the tag input form submit
     const handleSubmit = (e) => {
         e.preventDefault();
         setAllTags([...allTags, tag])
@@ -23,10 +28,11 @@ const Student = ({ student }) => {
         setTag('');
     }
 
+    // useEffect used here to update tagValues everytime there is a new tag input
     useEffect(() => {
         if (!loading) {
             setTagValues({ ...tagValues, [student.email]: allTags });
-            // setLoading(false);
+            //setLoading(false);
         }
     }, [tag])
 
