@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import Student from '../components/Student';
 import { TagContext } from '../context/TagContext';
-import Tag from '../components/Tag';
 
 // import css file
 import '../styles/Home.css';
