@@ -26,7 +26,7 @@ const Student = ({ student }) => {
     useEffect(() => {
         if (!loading) {
             setTagValues({ ...tagValues, [student.email]: allTags });
-            //setLoading(false);
+            // setLoading(false);
         }
     }, [tag])
 
@@ -45,7 +45,7 @@ const Student = ({ student }) => {
                             <span className='student_skill'>Skill: {student.skill}</span>
                             <span className='student_avg'>Average: {average}%</span>
                             {!toggle && <Grades grades={student.grades} />}
-                            {<Tag student={student} />}
+                            <Tag student={student} />
                             <div className='tag_input'>
                                 <form onSubmit={handleSubmit}>
                                     <input
